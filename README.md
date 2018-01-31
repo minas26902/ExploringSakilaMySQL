@@ -1,21 +1,24 @@
 ## Exploring the Sakila database in MySQL
-HW#10 SQL Due Date - January 31, 2018
+HW#8 MySQL  Due Date - January 31, 2018
 
-In this exercise I loaded the database 'sakila' into MySQL, wrote and ran queries using joins and subqueries when necessary to answer questions about the dataset. See SQL code below for each problem.
+In this exercise I loaded the database 'sakila' into MySQL and ran queries using joins and subqueries when necessary to answer questions about the dataset. See SQL code below for each problem.
 
 ### Problems
     
     USE sakila;
 
 1a.
+    
     SELECT first_name, last_name
     FROM actor;
 
 1b.
+    
     SELECT upper(concat(first_name,' ', last_name)) AS actor_name
     FROM actor;
 
 2a.
+    
     SELECT actor_id, first_name, last_name
     FROM actor
     WHERE first_name LIKE 'Joe';
