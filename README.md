@@ -84,7 +84,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     SET first_name = CASE
 	    WHEN first_name = 'Harpo' THEN 'Groucho'
 	    WHEN first_name = 'Groucho' THEN 'Mucho Groucho'
-        ELSE first_name -- this was missing and giving me the 1048: column 'first_name' cannot be null error
+        ELSE first_name 
     END
     WHERE last_name = 'Williams';
 
