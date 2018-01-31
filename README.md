@@ -31,46 +31,55 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     WHERE  last_name LIKE '%GEN%';
 
 2c.
+    
     SELECT actor_id, first_name, last_name
     FROM actor
     WHERE last_name LIKE '%LI%'
     ORDER by last_name, first_name;
 
 2d.
+    
     SELECT country_id, country
     FROM country
     WHERE country IN ('Afghanistan', 'Bangladesh', 'China');
 
 3a.
+    
     ALTER table actor
     ADD column middle_name VARCHAR(45) AFTER first_name;
 
 3b.
+    
     ALTER table actor
     MODIFY column middle_name blob;
 
 3c.
+    
     ALTER table actor
     DROP column middle_name;
 
 4a.
+    
     SELECT last_name, COUNT(last_name) AS counts
     FROM actor
     GROUP BY last_name
     HAVING (counts >= 1);
 
 4b.
+    
     SELECT last_name, COUNT(last_name) AS counts
     FROM actor
     GROUP BY last_name
     HAVING (counts > 1);
 
 4c.
+    
     UPDATE actor 
     SET first_name = 'Harpo'
     WHERE first_name = 'Groucho' AND last_name = 'Williams';
 
 4d.
+    
     UPDATE actor
     SET first_name = CASE
 	    WHEN first_name = 'Harpo' THEN 'Groucho'
@@ -80,15 +89,18 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     WHERE last_name = 'Williams';
 
 5a.
+    
     SHOW CREATE TABLE address;
 
 6a.
+    
     SELECT first_name, last_name, address
     FROM staff s
     JOIN address a
     USING (address_id);
 
 6b.
+    
     SELECT first_name, last_name, concat('$', format(SUM(amount),2)) AS total_rung
     FROM staff s
     JOIN payment p
@@ -96,7 +108,8 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     WHERE DATE(payment_date) LIKE '2005-08%'
     GROUP BY first_name, last_name;
 
-6c. 
+6c.
+    
     SELECT title, COUNT(actor_id) AS count
     FROM film
     JOIN film_actor
@@ -104,6 +117,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     GROUP BY title;
 
 6d.
+    
     SELECT title, COUNT(inventory_id) AS copies
     FROM film
     JOIN inventory
@@ -112,6 +126,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     GROUP BY title;
 
 6e.
+    
     SELECT last_name, concat('$', format(sum(amount),2)) AS total_paid
     FROM customer
     JOIN payment
@@ -120,6 +135,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     ORDER BY last_name;
 
 7a.
+    
     SELECT language_id, title
     FROM film
     WHERE title LIKE 'Q%' OR title LIKE 'K%'
@@ -131,6 +147,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     );
 
 7b.
+    
     SELECT first_name, last_name
     FROM actor
     WHERE actor_id IN
@@ -146,6 +163,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     );
 
 7c.
+    
     SELECT c.customer_id, c.first_name, c.last_name, c.email, co.country 
     FROM customer c, address a, city ci, country co 
     WHERE c.address_id = a.address_id 
@@ -154,6 +172,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     AND co.country ='Canada';
 
 7d.
+    
     SELECT title
     FROM film 
     WHERE film_id IN
@@ -169,6 +188,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     );
 
 7e.
+    
     SELECT title, COUNT(rental_id) AS count
     FROM film f, inventory i, rental r
     WHERE f.film_id = i.film_id
@@ -177,6 +197,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     ORDER BY title DESC;
 
 7f.
+    
     SELECT s.store_id, concat('$', format(SUM(amount),2)) AS 'total_business'
     FROM store s, staff sf, payment p
     WHERE s.store_id = sf.store_id
@@ -184,6 +205,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     GROUP BY s.store_id;
 
 7g.
+    
     SELECT s.store_id, city, country
     FROM store s, address a, city ci, country co
     WHERE s.address_id = a.address_id
@@ -191,6 +213,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     AND ci.country_id = co.country_id;
 
 7h.
+    
     SELECT c.name, concat ('$', format(SUM(amount), 2)) AS 'Gross Revenue' 
     FROM category c, film_category fc, inventory i, rental r,  payment p
     WHERE c.category_id = fc.category_id
@@ -202,6 +225,7 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     LIMIT 5;
 
 8a.
+    
     CREATE VIEW view1 AS
     SELECT c.name, concat ('$', format(SUM(amount), 2)) AS 'Gross Revenue' 
     FROM category c, film_category fc, inventory i, rental r,  payment p
@@ -214,8 +238,10 @@ In this exercise I loaded the database 'sakila' into MySQL and ran queries using
     LIMIT 5;
 
 8b.
+    
     SELECT * FROM view1;
 
 8c.
+    
     DROP VIEW view1;
     
